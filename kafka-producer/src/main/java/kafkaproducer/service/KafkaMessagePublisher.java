@@ -14,7 +14,7 @@ public class KafkaMessagePublisher {
 	private KafkaTemplate<String, Object> template;
 
 	public void sendMessageToTopic(String message) {
-		CompletableFuture<SendResult<String, Object>> future = template.send("topicOne", message);
+		CompletableFuture<SendResult<String, Object>> future = template.send("mtop", message);
 		future.whenComplete((result, ex) -> {
 			if (ex == null) {
 				System.out.printf("Sent message=[%s] with offset=[%s]\n", message, result.getRecordMetadata().offset());
@@ -24,6 +24,20 @@ public class KafkaMessagePublisher {
 			}
 		});
 	}
+
+	public void sendMessageToTopicWithSpecificPartition(String message) {
+		CompletableFuture<SendResult<String, Object>> future = template.send("mtop", 1, message, message);
+		future.whenComplete((result, ex) -> {
+			if (ex == null) {
+				System.out.printf("Sent message=[%s] with offset=[%s]\n", message, result.getRecordMetadata().offset());
+			} else {
+				System.out.printf("Unable to send message=[%s] due to : %s\n", message, ex.getMessage());
+
+			}
+		});
+	}
+
+
 
 	public void sendObjectToTopic(Customer customer) {
 		try {

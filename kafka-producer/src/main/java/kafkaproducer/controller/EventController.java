@@ -21,8 +21,8 @@ public class EventController {
 	@GetMapping("/publish/{message}")
 	public ResponseEntity<?> publishMessage(@PathVariable String message) {
 		try {
-			for (int i = 0; i < 100000; i++) {
-				publisher.sendMessageToTopic(message + i);
+			for (int i = 0; i < 100; i++) {
+				publisher.sendMessageToTopicWithSpecificPartition(message + i);
 			}
 			return ResponseEntity.ok("Message published successfully");
 		} catch (Exception ex) {

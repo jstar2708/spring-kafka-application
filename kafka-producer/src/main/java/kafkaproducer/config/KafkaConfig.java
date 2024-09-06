@@ -40,5 +40,4 @@ public class KafkaConfig {
 		return new NewTopic("myTopicOne", 3, (short) 1);
 
 	}
-
 }

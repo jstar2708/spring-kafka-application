@@ -10,17 +10,17 @@ import org.springframework.stereotype.Service;
 public class KafkaMessageConsumer {
 	private static final Logger logger = LoggerFactory.getLogger(KafkaMessageConsumer.class);
 
-	@KafkaListener(topics = "topicOne", groupId = "con-grp-2")
+	@KafkaListener(topics = "mtop", groupId = "con-grp-3")
 	public void consumerOne(String message) {
 		logger.info("Consumer consumed the message : " + message);
 	}
 
-	@KafkaListener(topics = "topicOne", groupId = "con-grp-2")
+	@KafkaListener(topics = "mtop", groupId = "con-grp-3")
 	public void consumerTwo(String message) {
 		logger.info("Consumer consumed the message : " + message);
 	}
 
-	@KafkaListener(topics = "topicOne", groupId = "con-grp-2")
+	@KafkaListener(topics = "mtop", groupId = "con-grp-3")
 	public void consumerThree(String message) {
 		logger.info("Consumer consumed the message : " + message);
 	}
